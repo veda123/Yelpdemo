@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="/">YelpDemo</a>
+  <%= link_to "YelpDemo", root_path , class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -16,6 +16,15 @@
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <% if user_signed_in? %>
+      <%= link_to "SignOut" , destroy_user_session_path, method: :delete %>
+      <%= link_to "Edit Profile" , edit_user_registration_path %>
+      <% else %>
+        <%= link_to "SignUp" , new_user_registration_path %>
+     
+        <%= link_to "SignIn" , new_user_session_path %>
+      <% end %>
+     
     </form>
   </div>
 </nav>
